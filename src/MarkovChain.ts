@@ -1,4 +1,4 @@
-export class MarkovData {
+export class MarkovChain {
     finalData: Record<string, string[]> = {};
     startData: string[] = [];
     endDelimiter = '󿼏';
@@ -23,18 +23,12 @@ export class MarkovData {
                     this.finalData[word] = [next];
                     return;
                 }
-                // if (!this.finalData[word].push) {
-                //     console.log(word, this.finalData[word]);
-                // }
+
                 this.finalData[word].push(next);
             });
         }
     }
 
-    getStart() {
-        const random = Math.floor(Math.random() * this.startData.length);
-        return `${this.startData[random]} `;
-    }
     getNext(current: string) {
         if (!current) return;
         const data = this.finalData[this.forbidden.includes(current.slice(0, -1)) ? current : current.slice(0, -1)];
@@ -42,9 +36,11 @@ export class MarkovData {
         const random = Math.floor(Math.random() * data.length);
         return data[random].endsWith(' ') ? data[random] : `${data[random]} `;
     }
+
     async add(data: string) {
         data += this.endDelimiter;
         const words = data.split(' ');
+
         this.startData.push(words[0]);
         for (let i = 0; i < words.length; i++) {
             const word = words[i];
@@ -58,5 +54,24 @@ export class MarkovData {
 
             this.finalData[word].push(next);
         }
+    }
+
+    generate(maxLength = 1000) {
+        const randomData = `${this.startData[Math.floor(Math.random() * this.startData.length)]} `;
+        return this.choose(randomData, randomData, maxLength);
+    }
+
+    choose(current: string, sequence: string, maxLength: number): string {
+        if (sequence.endsWith(`${this.endDelimiter} `)) return sequence.replaceAll(`${this.endDelimiter} `, '');
+        if (sequence.length >= maxLength) return sequence;
+        const next = this.getNext(current);
+
+        if (!next) return sequence;
+        sequence += next;
+        return this.choose(next, sequence, maxLength);
+    }
+
+    complete(start: string, maxLength = 1000) {
+        return this.choose(start, start, maxLength);
     }
 }

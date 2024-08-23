@@ -1,54 +1,54 @@
 <h1 align=center> kurwov </h1>
 A fast, dependency-free library for creating Markov Chains.
 
+
 ## API
 Generating a dataset.
 ```ts
 import { MarkovData } from 'kurwov';
 const sentences = ['i love hamburgers', 'i love cats'];
-const data = new MarkovData(sentences);
+const chain = new MarkovChain(sentences);
 ```
 
 Using your dataset to generate a sentence.
 ```ts
-import { Markov } from 'kurwov';
-Markov.generate({ data, maxLength: 100 }); // i love hamburgers or i love cats
+chain.generate(); // i love hamburgers or i love cats
 ```
 
 Adding an sentence to the dataset.
 ```ts
-data.add('i love dogs');
+chain.add('i love dogs');
 ```
 
 Completing a sentence.
 ```ts
-Markov.complete({ data, start: 'i love' }); // i love dogs, i love hamburgers, or i love cats
+chain.complete({ data, start: 'i love' }); // i love dogs, i love hamburgers, or i love cats
 ```
-## Features
-Feature | kurwov | markov-typescript | markov-generator | markov-strings | markov-chains
---- | --- | --- | --- | --- | ---
-Dependency-free | ✔️ | ❌ | ✔️ | ❌ | ❌
-Typings | ✔️ | ❌ | ❌ | ✔️ | ❌
-Generating sentences | ✔️ | ✔️ | ✔️ | ✔️ | ✔️
-Completing sentences | ✔️ | ❌ | ❌ | ❌ | ❌
-Adding stuff other than strings | ❌ | ✔️ | ❌ | ❌ | ✔️
+## Comparison
+Feature | kurwov | markov-typescript | markov-generator | markov-strings | markov-chains | mrkv
+--- | --- | --- | --- | --- | --- | --- 
+Dependency-free | ✔️ | ❌ | ✔️ | ❌ | ❌ | ✔️ 
+Typings | ✔️ | ❌ | ❌ | ❌ (incorrect) | ❌ | ✔️ 
+Generating sentences | ✔️ | ✔️ | ✔️ | ✔️ | ❌ (errors) | ❌ (errors)
+Completing sentences | ✔️ | ❌ | ❌ | ❌ | ❌ |  ✔️
+Higher statesize  support | ✔️ | ✔️ | ❌ | ✔️ | ❌ |  ❌ 
+Adding stuff other than strings | ❌ | ✔️ | ❌ | ❌ | ✔️ | ❌ |
+Total package size | 16.6KB | 1.4MB | 7.9KB* | 1.4MB | 51KB | 20KB
 
+If you use markov chains to generate sentences, kurwov is far better than other libraries. It's the fastest and smallest package in the comparison, and has typings.
+\* While markov-generator is only 7.9KB, it doesn't include ESM support and doesn't include typings. It also doesn't support higher statesizes which results in less code. 
 ## Speed
-### kurwov speed over versions
-Benchmark | v1 | v2 | v3
---- | --- | --- | ---
-Generating a dataset with 10000 sentences. | 649.55ms | 89.26ms | 50.53ms
-Generating a dataset with 100000 sentences. | 25509.70ms | 873.43ms | 572.49ms
+Benchmarks ran on a 6c/12t AMD Ryzen 5 5600 @ 4.45GHz with 32gb ddr4 3200mhz RAM on Ubuntu through WSL2 with Node.js v22.5.1
+Using data from [amazon q/a dataset](https://cseweb.ucsd.edu/~jmcauley/datasets/amazon/qa/), using the first n (10k or 100k) answers from the electronics dataset.
+
 
 ### kurwov speed compared to other markov packages
-Benchmark | kurwov | markov-typescript | markov-generator | markov-strings | markov-chains  
+Benchmark | kurwov | markov-typescript | markov-generator | markov-strings | markov-chains, foswig, mrkv
 --- | --- | --- | --- | --- | ---
-Generating a dataset with 10000 sentences. | 50.53ms | 419.66ms | 346.16ms | 1834.32ms | N/A (errored)
-Generating a dataset with 100000 sentences. | 572.49ms | 6221.28ms | 28329.17ms | N/A (couldn't finish in over 10 minutes) | N/A (errored)
+Generating a dataset with 10000 sentences. | 64.30ms | 458.90ms | 127.63ms | 1507.75ms | N/A (errored) 
+Generating a dataset with 100000 sentences. | 1046.55ms | 5815.11ms | 8844.53ms | 78044.7619ms | N/A (errored)
 
-## My other packages
-[Tiscord](https://npmjs.com/package/tiscord)
-
-[Tisbench](https://npmjs.com/package/tisbench)
-
-[Tisflake](https://npmjs.com/package/tisflake)
+### kurwov speed compared to other markov packages with higher statesize
+Benchmark | kurwov | markov-typescript | markov-strings 
+Generating a dataset with 10000 sentences. | 182.08ms | 702.25ms | 1349.19ms
+Generating a dataset with 100000 sentences. | 3481.44ms | 10154.96ms | 77600.49ms

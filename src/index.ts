@@ -1,2 +1,2 @@
-export * from './MarkovData';
-export * from './Markov';
+export * from './MarkovChain';
+export * from './MultiStateMarkovChain';

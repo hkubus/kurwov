@@ -1,13 +1,30 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { Markov, MarkovData } from '../src/index.js';
-
+import { MarkovChain, MultiStateMarkovChain } from '../src/index.js';
+const testingData = ['i like cats', 'i like dogs', 'hi im john', 'hi im kubus'];
 // TODO: add actual tests
-test('it works', () => {
-    const sentences = ['i love hamburgers', 'i love cats'];
-    const data = new MarkovData(sentences);
-
-    const generated = Markov.generate({ data, maxLength: 100 });
-
-    assert.equal(typeof generated, 'string');
+test('MultiStateMarkovChain', () => {
+    const chain = new MultiStateMarkovChain(testingData, 2);
+    assert.strictEqual(chain.startData.length, 4);
+    assert.strictEqual(Object.keys(chain.finalData).length, 2);
+});
+test('MarkovChain', () => {
+    const chain = new MarkovChain(testingData);
+    assert.strictEqual(chain.startData.length, 4);
+    assert.strictEqual(Object.keys(chain.finalData).length, 4);
+});
+test('MarkovChain generating', () => {
+    const chain = new MarkovChain(testingData);
+    const generated = chain.generate();
+    assert.strictEqual(typeof generated, 'string');
+    assert.notStrictEqual(generated, '');
+    assert.match(generated, /i like (cats|dogs)|hi im (john|kubus)/);
+});
+test('MultiStateMarkovChain generating', () => {
+    const chain = new MultiStateMarkovChain(testingData, 2);
+    const generated = chain.generate();
+    console.log(chain);
+    assert.strictEqual(typeof generated, 'string');
+    assert.notStrictEqual(generated, '');
+    assert.match(generated, /i like (cats|dogs)|hi im (john|kubus)/);
 });

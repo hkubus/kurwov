@@ -1,7 +1,7 @@
 {
   "name": "kurwov",
-  "version": "3.2.6",
-  "description": "a markov chain library",
+  "version": "4.0.0",
+  "description": "The fastest Markov Chain library for JavaScript",
   "scripts": {
     "build": "tsup",
     "check": "biome check .",
@@ -15,17 +15,18 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "exports": {
+    "types": "./dist/index.d.ts",
     "import": "./dist/index.mjs",
-    "require": "./dist/index.js",
-    "types": "./dist/index.d.ts"
+    "require": "./dist/index.js"
   },
   "files": [
     "dist"
   ],
   "author": "xiboon",
-  "license": "Apache-2.0",
+  "license": "ISC",
   "keywords": [
-    "markov"
+    "markov",
+    "markovchain"
   ],
   "repository": {
     "type": "git",
@@ -36,11 +37,15 @@
   },
   "homepage": "https://github.com/xiboon/kurwov#readme",
   "devDependencies": {
-    "@biomejs/biome": "^1.7.2",
-    "@types/node": "^20.12.8",
-    "tsup": "^8.0.2",
-    "tsx": "^4.9.0",
-    "typescript": "^5.4.5"
+    "@biomejs/biome": "^1.8.3",
+    "@types/node": "^22.4.2",
+    "markov-generator": "^1.2.3",
+    "markov-strings": "^3.0.1",
+    "markov-typescript": "^1.1.0",
+    "tinybench": "^2.9.0",
+    "tsup": "^8.2.4",
+    "tsx": "^4.17.0",
+    "typescript": "^5.5.4"
   },
   "publishConfig": {
     "provenance": true
