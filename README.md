@@ -33,9 +33,10 @@ Generating sentences | ✔️ | ✔️ | ✔️ | ✔️ | ❌ (errors) | ❌ (e
 Completing sentences | ✔️ | ❌ | ❌ | ❌ | ❌ |  ✔️
 Higher statesize  support | ✔️ | ✔️ | ❌ | ✔️ | ❌ |  ❌ 
 Adding stuff other than strings | ❌ | ✔️ | ❌ | ❌ | ✔️ | ❌ |
-Total package size | 16.6KB | 1.4MB | 7.9KB* | 1.4MB | 51KB | 20KB
+Total package size | 16.9KB | 1.4MB | 7.9KB* | 1.4MB | 51KB | 20KB
 
 If you use markov chains to generate sentences, kurwov is far better than other libraries. It's the fastest and smallest package in the comparison, and has typings.
+
 \* While markov-generator is only 7.9KB, it doesn't include ESM support and doesn't include typings. It also doesn't support higher statesizes which results in less code. 
 ## Speed
 Benchmarks ran on a 6c/12t AMD Ryzen 5 5600 @ 4.45GHz with 32gb ddr4 3200mhz RAM on Ubuntu through WSL2 with Node.js v22.5.1
@@ -50,5 +51,6 @@ Generating a dataset with 100000 sentences. | 1046.55ms | 5815.11ms | 8844.53ms 
 
 ### kurwov speed compared to other markov packages with higher statesize
 Benchmark | kurwov | markov-typescript | markov-strings 
+--- | --- | --- | ---
 Generating a dataset with 10000 sentences. | 182.08ms | 702.25ms | 1349.19ms
 Generating a dataset with 100000 sentences. | 3481.44ms | 10154.96ms | 77600.49ms
