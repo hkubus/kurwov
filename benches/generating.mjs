@@ -1,26 +1,23 @@
-import { readFile } from "node:fs/promises";
-import * as MarkovStrings from "markov-strings";
-import MarkovTypescript from "markov-typescript";
-import MarkovGen from "markov-generator";
-import { Bench } from "tinybench";
-import Corpus from "mrkv";
-import {
-  MarkovChain as Kurwov,
-  MultiStateMarkovChain as MultiStateKurwov,
-} from "../dist/index.mjs";
+import { readFile } from 'node:fs/promises';
+import * as MarkovStrings from 'markov-strings';
+import MarkovTypescript from 'markov-typescript';
+import MarkovGen from 'markov-generator';
+import { Bench } from 'tinybench';
+import Corpus from 'mrkv';
+import { MarkovChain as Kurwov } from '../dist/index.mjs';
 // replace the 10000 with the number of sentences you want to use for the benchmark
-const data = (await readFile("bench.txt", "utf8")).split("\n").slice(0, 10000);
-console.log("Data size:", data.length);
+const data = (await readFile('bench.txt', 'utf8')).split('\n').slice(0, 10000);
+console.log('Data size:', data.length);
 
 const kurwovChain = new Kurwov(data);
 
 const markovTsChain = new MarkovTypescript.MarkovChain(2);
 for (const line of data) {
-  markovTsChain.learn(line.split(" "));
+    markovTsChain.learn(line.split(' '));
 }
 const markovGenChain = new MarkovGen({
-  input: data,
-  minLength: 0,
+    input: data,
+    minLength: 0,
 });
 const markovStringsChain = new MarkovStrings.default.default(2);
 markovStringsChain.addData(data);
@@ -28,21 +25,21 @@ const mrkvChain = new Corpus();
 mrkvChain.load(data);
 
 const bench = new Bench()
-  .add("kurwov", () => {
-    kurwovChain.generate();
-  })
-  .add("markov-typescript", () => {
-    markovTsChain.walk().join(" ");
-  })
-  .add("markov-generator", () => {
-    markovGenChain.makeChain();
-  })
-  .add("markov-strings", () => {
-    markovStringsChain.generate();
-  })
-  .add("mrkv", () => {
-    mrkvChain.generate();
-  });
+    .add('kurwov', () => {
+        kurwovChain.generate();
+    })
+    .add('markov-typescript', () => {
+        markovTsChain.walk().join(' ');
+    })
+    .add('markov-generator', () => {
+        markovGenChain.makeChain();
+    })
+    .add('markov-strings', () => {
+        markovStringsChain.generate();
+    })
+    .add('mrkv', () => {
+        mrkvChain.generate();
+    });
 await bench.warmup();
 await bench.run();
 
