@@ -26,7 +26,10 @@
   "license": "ISC",
   "keywords": [
     "markov",
-    "markovchain"
+    "markovchain",
+    "chains", 
+    "text generator", 
+    ""
   ],
   "repository": {
     "type": "git",
@@ -40,8 +43,9 @@
     "@biomejs/biome": "^1.8.3",
     "@types/node": "^22.4.2",
     "markov-generator": "^1.2.3",
-    "markov-strings": "^3.0.1",
+    "markov-strings": "^3.0.2",
     "markov-typescript": "^1.1.0",
+    "mrkv": "^2.0.1",
     "tinybench": "^2.9.0",
     "tsup": "^8.2.4",
     "tsx": "^4.17.0",

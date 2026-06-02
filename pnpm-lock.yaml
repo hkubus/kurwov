@@ -18,11 +18,14 @@ importers:
         specifier: ^1.2.3
         version: 1.2.3
       markov-strings:
-        specifier: ^3.0.1
-        version: 3.0.1
+        specifier: ^3.0.2
+        version: 3.0.2
       markov-typescript:
         specifier: ^1.1.0
         version: 1.1.0
+      mrkv:
+        specifier: ^2.0.1
+        version: 2.0.1
       tinybench:
         specifier: ^2.9.0
         version: 2.9.0
@@ -556,11 +559,11 @@ packages:
     resolution: {integrity: sha512-IXO6OCs9yg8tMKzfPZ1YmheJbZCiEsnBdcB03l0OcfK9prKnJb96siuHCr5Fl37/yo9DnKU+TLpxzTUspw9shg==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
+  lodash-es@4.18.1:
+    resolution: {integrity: sha512-J8xewKD/Gk22OZbhpOVSwcs60zhd95ESDwezOFuA3/099925PdHJ7OFHNTGtajL3AlZkykD32HykiMo+BIBI8A==}
+
   lodash.sortby@4.7.0:
     resolution: {integrity: sha512-HDWXG8isMntAyRF5vZ7xKuEvOhT4AhlRt/3czTSjvGUxjYCBVRQY48ViDHyfYz9VIoBkW4TMGQNapx+l3RUwdA==}
-
-  lodash@4.17.21:
-    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
 
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
@@ -568,8 +571,8 @@ packages:
   markov-generator@1.2.3:
     resolution: {integrity: sha512-Q5HdOtfDt/rjL10taQNLjjXlgNTC2WWUj1j7+3O0ZzJXjn08LOuCtlQLy4GfTmVG8PVyYCiVQB5wctUc/nwJzA==}
 
-  markov-strings@3.0.1:
-    resolution: {integrity: sha512-/Cf6m7iIK1JWtvOemZ9eRUpKvebm+m6uXMTzszOJrRO3rkmdCqoS/EO9d4/3aFPnYEIHkopcF4C7W+k1zTDjnw==}
+  markov-strings@3.0.2:
+    resolution: {integrity: sha512-nTXbRVjrDY6x/xsnVky0+DlqKAru067tZy7Yar5k7Ilbg3geg3qTWzqBdK+F4LIU9mcGmBCOD9VgTdEgz70dBg==}
     engines: {node: '>=8.0.0'}
 
   markov-typescript@1.1.0:
@@ -597,6 +600,9 @@ packages:
   minipass@7.1.2:
     resolution: {integrity: sha512-qOOzS1cBTWYF4BH8fVePDBOO9iptMnGUEZwNc/cMWnTV2nVLZ7VoNWEPHkYczZA0pdoA7dl6e7FL659nX9S2aw==}
     engines: {node: '>=16 || 14 >=14.17'}
+
+  mrkv@2.0.1:
+    resolution: {integrity: sha512-Lep4lw579kRHc4naOl5Ikr1FulzLpibezAHFRqr6ElFPy4M3Xlv4HPUAlUsIwX2w/joK6wmXmI8fVRoF/0TEuw==}
 
   ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
@@ -1236,17 +1242,17 @@ snapshots:
 
   load-tsconfig@0.2.5: {}
 
-  lodash.sortby@4.7.0: {}
+  lodash-es@4.18.1: {}
 
-  lodash@4.17.21: {}
+  lodash.sortby@4.7.0: {}
 
   lru-cache@10.4.3: {}
 
   markov-generator@1.2.3: {}
 
-  markov-strings@3.0.1:
+  markov-strings@3.0.2:
     dependencies:
-      lodash: 4.17.21
+      lodash-es: 4.18.1
 
   markov-typescript@1.1.0:
     dependencies:
@@ -1268,6 +1274,8 @@ snapshots:
       brace-expansion: 2.0.1
 
   minipass@7.1.2: {}
+
+  mrkv@2.0.1: {}
 
   ms@2.1.2: {}
 
