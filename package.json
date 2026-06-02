@@ -27,18 +27,18 @@
   "keywords": [
     "markov",
     "markovchain",
-    "chains", 
-    "text generator", 
+    "chains",
+    "text generator",
     ""
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xiboon/kurwov.git"
+    "url": "git+https://github.com/hkubus/kurwov.git"
   },
   "bugs": {
-    "url": "https://github.com/xiboon/kurwov/issues"
+    "url": "https://github.com/hkubus/kurwov/issues"
   },
-  "homepage": "https://github.com/xiboon/kurwov#readme",
+  "homepage": "https://github.com/hkubus/kurwov#readme",
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
     "@types/node": "^22.4.2",
