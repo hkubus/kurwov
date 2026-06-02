@@ -1,9 +1,9 @@
 import { readFile } from 'node:fs/promises';
+import MarkovGen from 'markov-generator';
 import * as MarkovStrings from 'markov-strings';
 import MarkovTypescript from 'markov-typescript';
-import MarkovGen from 'markov-generator';
-import { Bench } from 'tinybench';
 import Corpus from 'mrkv';
+import { Bench } from 'tinybench';
 import { MarkovChain as Kurwov } from '../dist/index.mjs';
 // replace the 10000 with the number of sentences you want to use for the benchmark
 const data = (await readFile('bench.txt', 'utf8')).split('\n').slice(0, 10000);
