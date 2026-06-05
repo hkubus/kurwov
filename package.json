@@ -1,6 +1,6 @@
 {
     "name": "kurwov",
-    "version": "4.0.1",
+    "version": "5.0.0",
     "description": "The fastest Markov Chain library for JavaScript",
     "type": "module",
     "scripts": {
