@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { MarkovChain, MultiStateMarkovChain } from '../src/index.js';
+import { MarkovChain, MultiStateMarkovChain } from '../src/index.ts';
+
 const testingData = ['i like cats', 'i like dogs', 'hi im john', 'hi im kubus'];
 // TODO: add actual tests
 test('MultiStateMarkovChain', () => {
@@ -23,7 +24,6 @@ test('MarkovChain generating', () => {
 test('MultiStateMarkovChain generating', () => {
     const chain = new MultiStateMarkovChain(testingData, 2);
     const generated = chain.generate();
-    console.log(chain);
     assert.strictEqual(typeof generated, 'string');
     assert.notStrictEqual(generated, '');
     assert.match(generated, /i like (cats|dogs)|hi im (john|kubus)/);
