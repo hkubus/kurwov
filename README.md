@@ -33,7 +33,7 @@ Generating sentences | ✔️ | ✔️ | ✔️ | ✔️ | ❌ (errors) | ✔️
 Completing sentences | ✔️ | ❌ | ❌ | ❌ | ❌ |  ✔️
 Higher statesize  support | ✔️ | ✔️ | ❌ | ✔️ | ❌ |  ❌ 
 Adding stuff other than strings | ❌ | ✔️ | ❌ | ❌ | ✔️ | ❌ |
-Total package size | 16.9KB | 1.38MB | 7.9KB* | 636.9KB | 49.6KB | 15.43KB
+Total package size | 9.8KB | 1.38MB | 7.9KB* | 636.9KB | 49.6KB | 15.43KB
 
 If you use markov chains to generate sentences, kurwov is far better than other libraries. It's the fastest and smallest package in the comparison, and has typings.
 
