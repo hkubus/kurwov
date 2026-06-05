@@ -1,2 +1,2 @@
-export * from './MarkovChain';
-export * from './MultiStateMarkovChain';
+export * from './MarkovChain.ts';
+export * from './MultiStateMarkovChain.ts';

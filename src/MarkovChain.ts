@@ -5,10 +5,10 @@ export class MarkovChain {
     forbidden: string[];
     constructor(data: string[]) {
         this.forbidden = Object.getOwnPropertyNames(Object.getPrototypeOf({}));
-        this._createData(data);
+        this.#_createData(data);
     }
 
-    private async _createData(data: string[]) {
+    async #_createData(data: string[]) {
         for (let e of data) {
             e += this.endDelimiter;
             const words: string[] = e.split(' ');
@@ -29,7 +29,7 @@ export class MarkovChain {
         }
     }
 
-    getNext(current: string) {
+    getNext(current: string): string | undefined {
         if (!current) return;
         const data = this.finalData[this.forbidden.includes(current.slice(0, -1)) ? current : current.slice(0, -1)];
         if (!data) return;
@@ -37,7 +37,7 @@ export class MarkovChain {
         return data[random].endsWith(' ') ? data[random] : `${data[random]} `;
     }
 
-    async add(data: string) {
+    async add(data: string): Promise<void> {
         data += this.endDelimiter;
         const words = data.split(' ');
 
@@ -56,7 +56,7 @@ export class MarkovChain {
         }
     }
 
-    generate(maxLength = 1000) {
+    generate(maxLength = 1000): string {
         const randomData = `${this.startData[Math.floor(Math.random() * this.startData.length)]} `;
         return this.choose(randomData, randomData, maxLength);
     }
@@ -71,7 +71,7 @@ export class MarkovChain {
         return this.choose(next, sequence, maxLength);
     }
 
-    complete(start: string, maxLength = 1000) {
+    complete(start: string, maxLength = 1000): string {
         return this.choose(start, start, maxLength);
     }
 }

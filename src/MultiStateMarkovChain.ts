@@ -3,15 +3,14 @@ export class MultiStateMarkovChain {
     finalData: Record<string, string[]> = {};
     startData: string[] = [];
     endDelimiter = '󿼏';
+    stateSize: number;
 
-    constructor(
-        data: string[],
-        public stateSize = 2,
-    ) {
+    constructor(data: string[], stateSize: number = 2) {
+        this.stateSize = stateSize;
         this.forbidden = Object.getOwnPropertyNames(Object.getPrototypeOf({}));
-        this._createData(data);
+        this.#createData(data);
     }
-    _createData(data: string[]) {
+    #createData(data: string[]): void {
         for (let item of data) {
             item += this.endDelimiter;
             const words = item.split(' ');
@@ -29,7 +28,7 @@ export class MultiStateMarkovChain {
         }
     }
 
-    getNext(current: string) {
+    getNext(current: string): string | undefined {
         if (!current) return;
         const data = this.finalData[current];
         if (!data) return;
@@ -38,7 +37,7 @@ export class MultiStateMarkovChain {
         return data[random].endsWith(' ') ? data[random] : `${data[random]} `;
     }
 
-    add(item: string) {
+    add(item: string): void {
         const words = item.split(' ');
         this.startData.push(words[0]);
         for (let i = 0; i < words.length - 1; i++) {
@@ -62,11 +61,11 @@ export class MultiStateMarkovChain {
         sequence += ` ${next}`;
         return this.choose(sequence, maxLength);
     }
-    generate(maxLength = 1000) {
+    generate(maxLength = 1000): string {
         const randomData = this.startData[Math.floor(Math.random() * this.startData.length)];
         return this.choose(randomData, maxLength);
     }
-    complete(start: string, maxLength = 1000) {
+    complete(start: string, maxLength = 1000): string {
         return this.choose(start, maxLength);
     }
 }

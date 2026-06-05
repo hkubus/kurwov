@@ -1,22 +1,16 @@
 {
     "compilerOptions": {
-        "target": "es2022",
+        "module": "nodenext",
         "lib": ["esnext"],
+        "types": ["node"],
 
-        "module": "esnext",
-        "moduleResolution": "bundler",
-
-        "outDir": "dist",
-        "esModuleInterop": true,
+        "erasableSyntaxOnly": true,
+        "allowImportingTsExtensions": true,
         "verbatimModuleSyntax": true,
+        "isolatedDeclarations": true,
 
-        "forceConsistentCasingInFileNames": true,
-        "resolveJsonModule": true,
-        "noEmitOnError": true,
+        "noEmit": true,
         "skipLibCheck": true,
-        "sourceMap": true,
-        "declaration": true,
-
-        "strict": true
+        "declaration": true
     }
 }

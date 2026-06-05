@@ -1,58 +1,54 @@
 {
-  "name": "kurwov",
-  "version": "4.0.1",
-  "description": "The fastest Markov Chain library for JavaScript",
-  "scripts": {
-    "build": "tsup",
-    "check": "biome check .",
-    "check:apply": "biome check . --apply-unsafe",
-    "format": "biome format --write .",
-    "lint": "biome lint .",
-    "test": "node --import tsx --test test/*.test.ts",
-    "typecheck": "tsc --noEmit"
-  },
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "exports": {
-    "types": "./dist/index.d.ts",
-    "import": "./dist/index.mjs",
-    "require": "./dist/index.js"
-  },
-  "files": [
-    "dist"
-  ],
-  "author": "xiboon",
-  "license": "ISC",
-  "keywords": [
-    "markov",
-    "markovchain",
-    "chains",
-    "text generator",
-    ""
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/hkubus/kurwov.git"
-  },
-  "bugs": {
-    "url": "https://github.com/hkubus/kurwov/issues"
-  },
-  "homepage": "https://github.com/hkubus/kurwov#readme",
-  "devDependencies": {
-    "@biomejs/biome": "^1.8.3",
-    "@types/node": "^22.4.2",
-    "markov-generator": "^1.2.3",
-    "markov-strings": "^3.0.2",
-    "markov-typescript": "^1.1.0",
-    "mrkv": "^2.0.1",
-    "tinybench": "^2.9.0",
-    "tsup": "^8.2.4",
-    "tsx": "^4.17.0",
-    "typescript": "^5.5.4"
-  },
-  "publishConfig": {
-    "provenance": true
-  },
-  "packageManager": "pnpm@9.0.6"
+    "name": "kurwov",
+    "version": "4.0.1",
+    "description": "The fastest Markov Chain library for JavaScript",
+    "type": "module",
+    "scripts": {
+        "build": "tsdown",
+        "check": "biome check",
+        "check:fix": "biome check --write --unsafe",
+        "format": "biome format --write",
+        "lint": "biome lint",
+        "test": "node --test \"test/**/*.ts\"",
+        "typecheck": "tsc --noEmit"
+    },
+    "exports": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+    },
+    "sideEffects": false,
+    "files": [
+        "dist"
+    ],
+    "author": "xiboon",
+    "license": "ISC",
+    "keywords": [
+        "markov",
+        "markovchain",
+        "chains",
+        "text generator"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/hkubus/kurwov.git"
+    },
+    "bugs": {
+        "url": "https://github.com/hkubus/kurwov/issues"
+    },
+    "homepage": "https://github.com/hkubus/kurwov#readme",
+    "devDependencies": {
+        "@biomejs/biome": "^2.4.16",
+        "@types/node": "^25.9.1",
+        "markov-generator": "^1.2.3",
+        "markov-strings": "^3.0.4",
+        "markov-typescript": "^1.1.0",
+        "mrkv": "^2.0.1",
+        "tinybench": "^6.0.2",
+        "tsdown": "^0.22.2",
+        "typescript": "^6.0.3"
+    },
+    "engines": {
+        "node": "^20.19.0 || >=22.12.0"
+    },
+    "packageManager": "pnpm@11.5.2"
 }

@@ -1,17 +1,18 @@
 import { readFile } from 'node:fs/promises';
 import MarkovGen from 'markov-generator';
-import * as MarkovStrings from 'markov-strings';
-import MarkovTypescript from 'markov-typescript';
+import MarkovStrings from 'markov-strings';
+import { MarkovChain as MarkovTypescript } from 'markov-typescript';
 import Corpus from 'mrkv';
 import { Bench } from 'tinybench';
-import { MarkovChain as Kurwov } from '../dist/index.mjs';
+import { MarkovChain as Kurwov } from '../src/index.ts';
+
 // replace the 10000 with the number of sentences you want to use for the benchmark
 const data = (await readFile('bench.txt', 'utf8')).split('\n').slice(0, 10000);
 console.log('Data size:', data.length);
 
 const kurwovChain = new Kurwov(data);
 
-const markovTsChain = new MarkovTypescript.MarkovChain(2);
+const markovTsChain = new MarkovTypescript(2);
 for (const line of data) {
     markovTsChain.learn(line.split(' '));
 }
@@ -19,7 +20,7 @@ const markovGenChain = new MarkovGen({
     input: data,
     minLength: 0,
 });
-const markovStringsChain = new MarkovStrings.default.default(2);
+const markovStringsChain = new MarkovStrings.default({ stateSize: 2 });
 markovStringsChain.addData(data);
 const mrkvChain = new Corpus();
 mrkvChain.load(data);
@@ -40,7 +41,7 @@ const bench = new Bench()
     .add('mrkv', () => {
         mrkvChain.generate();
     });
-await bench.warmup();
+
 await bench.run();
 
 console.table(bench.table());

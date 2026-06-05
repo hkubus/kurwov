@@ -1,13 +1,10 @@
 {
-    "$schema": "https://biomejs.dev/schemas/1.7.2/schema.json",
+    "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
     "vcs": {
         "enabled": true,
         "clientKind": "git",
         "defaultBranch": "main",
         "useIgnoreFile": true
-    },
-    "files": {
-        "ignore": ["package.json"]
     },
     "formatter": {
         "indentStyle": "space",
@@ -22,24 +19,10 @@
     "linter": {
         "rules": {
             "recommended": true,
-            "complexity": {
-                "noForEach": "off",
-                "noStaticOnlyClass": "off"
-            },
-            "correctness": {
-                "noSwitchDeclarations": "off",
-                "noUnusedImports": "error"
-            },
             "style": {
                 "noParameterAssign": "off",
                 "useNodeAssertStrict": "error"
-            },
-            "nursery": {
-                "noDuplicateJsonKeys": "error"
             }
         }
-    },
-    "organizeImports": {
-        "enabled": true
     }
 }
